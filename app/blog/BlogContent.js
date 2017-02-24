@@ -38,7 +38,7 @@ export default class BlogContent extends Component {
                     </View>
                     {/**中间**/}
                     <View>
-                        <Text style={styles.topTextStyles}>{this.props.sigalRowdate.title}</Text>
+                        <Text style={styles.topTextStyles}>{this.props.sigalRowdata.title}</Text>
                     </View>
                     {/**右边**/}
                     <View style={[styles.topIconStyles,{paddingRight:width*0.04}]}>
@@ -58,12 +58,12 @@ export default class BlogContent extends Component {
 
                 <ScrollView style={styles.contentStyle}>
                         <View style={styles.infoStyle}>
-                            <Text style={styles.infoTextStyle}>发表时间:{this.props.sigalRowdate.create_time}</Text>
-                            <Text style={[styles.infoTextStyle,{marginLeft:width*0.02}]}>阅览次数:{this.props.sigalRowdate.view}</Text>
+                            <Text style={styles.infoTextStyle}>发表时间:{this.props.sigalRowdata.create_time}</Text>
+                            <Text style={[styles.infoTextStyle,{marginLeft:width*0.02}]}>阅览次数:{this.props.sigalRowdata.view}</Text>
                         </View>
 
                         <HTMLView
-                            value={this.props.sigalRowdate.content}
+                            value={this.props.sigalRowdata.content}
                             stylesheet={htmlStyles}
                         />
                 </ScrollView>

@@ -17,10 +17,10 @@ import {
     Image
 } from 'react-native';
 
-import DataView from '../compo/DataView'
-import Constant from '../common/Constant'
-import AppUrl   from '../common/AppUrl'
-import BlogContent   from './BlogContent'
+import DataView      from  '../compo/DataView'
+import Constant      from  '../common/Constant'
+import AppUrl        from  '../common/AppUrl'
+import BlogContent   from  './BlogContent'
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -88,19 +88,19 @@ export default class BlogPage extends Component {
         )
     }
 
-    readBlog = (sigalRowdate) => {
+    readBlog = (sigalRowdata) => {
         //Alert.alert('进来了')
-        console.log(sigalRowdate)
+        console.log(sigalRowdata)
         const { navigator } = this.props;
         //为什么这里可以取得 props.navigator?请看上文:
         //<Component {...route.params} navigator={navigator} />
         //这里传递了navigator作为props
         if(navigator) {
             navigator.push({
-                name: sigalRowdate.title,
+                name: sigalRowdata.title,
                 component: BlogContent,
                 params:{
-                    sigalRowdate:sigalRowdate
+                    sigalRowdata:sigalRowdata
                 }
             })
         }
@@ -111,7 +111,7 @@ export default class BlogPage extends Component {
             <DataView
                 rowData={rowData}
                 dataType={Constant.Content_Type_BLOG}
-                callBackReadBlog={(sigalRowdate)=>that.readBlog(sigalRowdate)}
+                callBackReadBlog={(sigalRowdata)=>that.readBlog(sigalRowdata)}
             />
         )
     }
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         width:width*0.7,
         height:height*0.05,
         backgroundColor: "#FFFFFF",
-        borderRadius:width*0.7/20,
+        borderRadius:width*0.7/30,
         paddingLeft:width*0.02,
         fontSize:15
     },

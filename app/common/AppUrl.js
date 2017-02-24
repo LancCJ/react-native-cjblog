@@ -6,12 +6,16 @@ import React, {Component} from 'react';
  *系统请求配置
  */
 export default class AppUrl extends Component {
-    static BlogWebUrl='http://lanccj.synology.me:7070/blog/attached/blog/'
+    static BlogAttachedUrl='http://lanccj.synology.me:7070/blog/attached/blog/'
+
+    static VideoAttachedUrl='http://lanccj.synology.me:7070/blog/attached/video/'
+
 
     //服务器IP地址
     static HostUrl='http://localhost:8088/api/v1/';
 
-    //博客列表请求地址
+    //列表请求地址
     static BlogListUrl=AppUrl.HostUrl+'blog/list';
+
 }
 
