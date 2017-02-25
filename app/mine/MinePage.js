@@ -77,7 +77,7 @@ export default class MinePage extends Component {
                             </View>
 
                             <View style={[{marginTop:height*0.02}]}>
-                                <CommonCell id='cooperation'     name='信息修改' type="button"  iconName="info" />
+                                <CommonCell id='infoUpdate'     name='信息修改' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600"/>
                             </View>
                     </View>
                 </ScrollView>

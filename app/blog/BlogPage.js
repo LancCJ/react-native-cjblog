@@ -15,6 +15,7 @@ import {
     ListView,
     Alert,
     Image
+
 } from 'react-native';
 
 import DataView      from  '../compo/DataView'

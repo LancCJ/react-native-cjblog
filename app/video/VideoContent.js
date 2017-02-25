@@ -1,5 +1,5 @@
 /**
- * Created by lanccj on 17/2/24.
+ * Created by lanccj on 17/2/25.
  */
 import React, {Component} from 'react';
 import {
@@ -12,11 +12,14 @@ import {
     Alert,
     TouchableOpacity,
     Platform,
-    ScrollView
+    ScrollView,
+    WebView
 } from 'react-native';
 
 import { Icon } from 'react-native-elements'
+import Video from 'react-native-video'
 import HTMLView from 'react-native-htmlview'
+
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -24,7 +27,7 @@ var {width,height}=Dimensions.get('window')
 /**
  *博客文章内容展示
  */
-export default class BlogContent extends Component {
+export default class VideoContent extends Component {
     renderNavBar(){
         return (
             <View style={styles.navBarStyle}>
@@ -51,22 +54,48 @@ export default class BlogContent extends Component {
             </View>
         )
     }
+    loadStart(){
+
+    }
+    setDuration(){
+
+    }
+    setTime(){
+
+    }
+    onEnd(){
+
+    }
+    videoError(){
+
+    }
+    onBuffer(){
+
+    }
+    onTimedMetadata(){
+
+    }
     render() {
         return (
             <View style={styles.container}>
                 {this.renderNavBar()}
 
-                <ScrollView style={styles.contentStyle}>
-                        <View style={styles.infoStyle}>
-                            <Text style={styles.infoTextStyle}>发表时间:{this.props.sigalRowdata.create_time}</Text>
-                            <Text style={[styles.infoTextStyle,{marginLeft:width*0.02}]}>阅览次数:{this.props.sigalRowdata.view}</Text>
-                        </View>
+                <View style={styles.contentStyle}>
+                    <WebView
+                        ref='videoWebView'
+                        automaticallyAdjustContentInsets={false}
+                        style={styles.webView}
+                        source={{uri: 'http://player.youku.com/embed/XMjUyODE4MjI3Mg=='}}
+                        javaScriptEnabled={true}
+                        domStorageEnabled={true}
+                        decelerationRate="normal"
+                        //onNavigationStateChange={this.onNavigationStateChange}
+                        //onShouldStartLoadWithRequest={this.onShouldStartLoadWithRequest}
+                        startInLoadingState={true}
+                        //scalesPageToFit={this.state.scalesPageToFit}
+                    />
 
-                        <HTMLView
-                            value={this.props.sigalRowdata.content}
-                            stylesheet={htmlStyles}
-                        />
-                </ScrollView>
+                </View>
             </View>
         );
     }
@@ -107,6 +136,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between'
     },
     contentStyle:{
+        flex:1,
         width:width
     },
     infoStyle:{
@@ -122,5 +152,15 @@ const styles = StyleSheet.create({
     contentTextStyle:{
         fontSize:10,
         color:'#020202'
+    },
+
+
+
+    backgroundVideo: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
     }
 });

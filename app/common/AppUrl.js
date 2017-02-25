@@ -10,6 +10,7 @@ export default class AppUrl extends Component {
 
     static VideoAttachedUrl='http://lanccj.synology.me:7070/blog/attached/video/'
 
+    static ImageAttachedUrl='http://lanccj.synology.me:7070/blog/attached/beauty/'
 
     //服务器IP地址
     static HostUrl='http://localhost:8088/api/v1/';

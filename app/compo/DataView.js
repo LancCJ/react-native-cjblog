@@ -58,28 +58,37 @@ export default class DataView extends Component {
                                 </View>
                             </TouchableOpacity>
                         ):(
-                        <View style={[styles.videocontainer]}>
-                                <Image source={{uri:AppUrl.VideoAttachedUrl+this.props.rowData.image}} style={styles.DataItemVideoImageStyle}>
-                                    <Text numberOfLines={2} style={[{marginLeft:width*0.04,backgroundColor:'transparent',color:'#FFFFFF',fontWeight: 'bold',fontSize:width*0.05,marginTop:height*0.01}]}>{this.props.rowData.title}</Text>
-                                    <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
-                                        <Icon
-                                            type='ionicon'
-                                            name='ios-play'
-                                            size={width*0.15}
-                                            iconStyle={styles.play}
-                                        />
-                                    </TouchableOpacity>
-                                </Image>
-                            {/*<View style={styles.videoInfoStyle}>*/}
-                                {/*<Text style={{color:'#020202'}} numberOfLines={1}>{this.props.rowData.create_time}</Text>*/}
-                                {/*<Text style={{color:'#020202'}}>{this.props.rowData.view}</Text>*/}
-                            {/*</View>*/}
-                            {/*<HTMLView*/}
-                                {/*value={this.props.rowData.pre}*/}
-                            {/*/>*/}
-                        </View>
-                        )}
 
+                        this.props.dataType===Constant.Content_Type_VIDEO?(
+                                <View style={[styles.videocontainer]}>
+                                    <Image source={{uri:AppUrl.VideoAttachedUrl+this.props.rowData.image}} style={styles.DataItemVideoImageStyle}>
+                                        <Text numberOfLines={2} style={[{marginLeft:width*0.04,backgroundColor:'transparent',color:'#FFFFFF',fontWeight: 'bold',fontSize:width*0.05,marginTop:height*0.01}]}>{this.props.rowData.title}</Text>
+                                        <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
+                                            <Icon
+                                                type='ionicon'
+                                                name='ios-play'
+                                                size={width*0.15}
+                                                iconStyle={styles.play}
+                                            />
+                                        </TouchableOpacity>
+                                    </Image>
+                                    {/*<View style={styles.videoInfoStyle}>*/}
+                                    {/*<Text style={{color:'#020202'}} numberOfLines={1}>{this.props.rowData.create_time}</Text>*/}
+                                    {/*<Text style={{color:'#020202'}}>{this.props.rowData.view}</Text>*/}
+                                    {/*</View>*/}
+                                    {/*<HTMLView*/}
+                                    {/*value={this.props.rowData.pre}*/}
+                                    {/*/>*/}
+                                </View>
+                            ):(
+                                <View style={[styles.imagecontainer]}>
+                                    <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
+                                        {/*<Image source={{uri:AppUrl.ImageAttachedUrl+this.props.rowData.img}} style={styles.DataItemVideoImageStyle}/>*/}
+                                        <Image source={{uri:AppUrl.ImageAttachedUrl+'67cb3942417e43a4a4f9ba2638abcb7c.jpg'}} style={styles.DataItemImageImageStyle}/>
+                                    </TouchableOpacity>
+                                </View>
+                            )
+                        )}
                 </View>
         );
     }
@@ -137,5 +146,16 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderRadius:width*0.15/2,
         color:'#FA5600'
+    },
+    imagecontainer:{
+        width:width*0.5-width*0.01,
+        height:width*0.5-width*0.01,
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    DataItemImageImageStyle:{
+        width:width*0.45,
+        height:width*0.45,
+        resizeMode:'cover'
     }
 });
