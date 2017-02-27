@@ -6,8 +6,13 @@
 
 import React, { Component } from 'react';
 import {
-  AppRegistry
+  AppRegistry,
+  Navigator
 } from 'react-native';
-import CJBlog from './app/CJBlog'
 
-AppRegistry.registerComponent('CJBlog', () => CJBlog);
+import CJBlog from './app/CJBlog'
+import Root from './app/Root'
+
+
+
+AppRegistry.registerComponent('CJBlog', () => Root);

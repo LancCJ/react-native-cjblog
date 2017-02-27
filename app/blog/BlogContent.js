@@ -17,6 +17,7 @@ import {
 
 import { Icon } from 'react-native-elements'
 import HTMLView from 'react-native-htmlview'
+import {Actions} from 'react-native-router-flux'
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -30,7 +31,7 @@ export default class BlogContent extends Component {
             <View style={styles.navBarStyle}>
                 <View style={styles.navBarContentStyle}>
                     <View style={[styles.topIconStyles,{paddingLeft:width*0.04}]}>
-                        <TouchableOpacity onPress={()=>this.props.navigator.pop()}>
+                        <TouchableOpacity onPress={()=>Actions.pop()}>
                             <View>
                                 <Icon type='ionicon' color={'#FFFFFF'} name='ios-arrow-back-outline' size={30} />
                             </View>

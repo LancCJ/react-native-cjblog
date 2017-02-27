@@ -41,35 +41,17 @@ export default class CJBlog extends Component {
                     renderIcon={() => <Icon containerStyle={{justifyContent: 'center', alignItems: 'center', marginTop: 12}} color={'#5e6977'} name={icon} size={33} />}
                     renderSelectedIcon={() => <Icon color={'#ED6000'} name={icon} size={30} />}
                     onPress={() => this.changeTab(id)}>
-                    <Navigator
-                        initialRoute={{ name: title, component: compo }}
-                        //配置场景
-                        configureScene={
-                                    (route) => {
-                                        //这个是页面之间跳转时候的动画，具体有哪些？可以看这个目录下，有源代码的: node_modules/react-native/Libraries/CustomComponents/Navigator/NavigatorSceneConfigs.js
-                                        return ({
-                                            ...Navigator.SceneConfigs.HorizontalSwipeJump,
-                                            gestures:null
-                                        });
-                                    }
-                                }
-                        renderScene={
-                                    (route, navigator) =>{
-                                        let Component = route.component;
-                                        return <Component {...route.params} navigator={navigator} />
-                                    }
-                                }
-                    />
+                    {compo}
                 </Tab>
         )
     }
     render() {
         return (
                 <Tabs>
-                    {this.renderTab('blog','博客','list',BlogPage)}
-                    {this.renderTab('image','美图','image',ImagePage)}
-                    {this.renderTab('video','视频','videocam',VideoPage)}
-                    {this.renderTab('mine','我'  ,'person',MinePage)}
+                    {this.renderTab('blog','博客','list',<BlogPage/>)}
+                    {this.renderTab('image','美图','image',<ImagePage/>)}
+                    {this.renderTab('video','视频','videocam',<VideoPage/>)}
+                    {this.renderTab('mine','我'  ,'person',<MinePage/>)}
                 </Tabs>
         );
     }

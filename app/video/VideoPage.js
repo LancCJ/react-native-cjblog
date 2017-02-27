@@ -21,6 +21,7 @@ import DataView      from  '../compo/DataView'
 import Constant      from  '../common/Constant'
 import AppUrl        from  '../common/AppUrl'
 import VideoContent  from  './VideoContent'
+import {Actions} from 'react-native-router-flux'
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -95,19 +96,21 @@ export default class VideoPage extends Component {
     readBlog = (sigalRowdata) => {
         //Alert.alert('进来了')
         console.log(sigalRowdata)
-        const { navigator } = this.props;
-        //为什么这里可以取得 props.navigator?请看上文:
-        //<Component {...route.params} navigator={navigator} />
-        //这里传递了navigator作为props
-        if(navigator) {
-            navigator.push({
-                name: sigalRowdata.title,
-                component: VideoContent,
-                params:{
-                    sigalRowdata:sigalRowdata
-                }
-            })
-        }
+        Actions.VideoContent({sigalRowdata:sigalRowdata});
+        // const { navigator } = this.props;
+        // console.log(navigator)
+        // //为什么这里可以取得 props.navigator?请看上文:
+        // //<Component {...route.params} navigator={navigator} />
+        // //这里传递了navigator作为props
+        // if(navigator) {
+        //     navigator.push({
+        //         name: sigalRowdata.title,
+        //         component: VideoContent,
+        //         params:{
+        //             sigalRowdata:sigalRowdata
+        //         }
+        //     })
+        // }
     }
 
     renderRow(rowData){
