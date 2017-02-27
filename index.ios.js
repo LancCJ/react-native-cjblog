@@ -1,18 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
-  AppRegistry,
-  Navigator
+    AppRegistry
 } from 'react-native';
-
 import CJBlog from './app/CJBlog'
-import Root from './app/Root'
 
-
-
-AppRegistry.registerComponent('CJBlog', () => Root);
+AppRegistry.registerComponent('CJBlog', () => CJBlog);

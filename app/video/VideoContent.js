@@ -19,7 +19,6 @@ import {
 import { Icon } from 'react-native-elements'
 import Video from 'react-native-video'
 import HTMLView from 'react-native-htmlview'
-import {Actions} from 'react-native-router-flux'
 
 
 var Dimensions = require('Dimensions')
@@ -34,7 +33,7 @@ export default class VideoContent extends Component {
             <View style={styles.navBarStyle}>
                 <View style={styles.navBarContentStyle}>
                     <View style={[styles.topIconStyles,{paddingLeft:width*0.04}]}>
-                        <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <TouchableOpacity onPress={()=>this.props.navigator.pop()}>
                             <View>
                                 <Icon type='ionicon' color={'#FFFFFF'} name='ios-arrow-back-outline' size={30} />
                             </View>

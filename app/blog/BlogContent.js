@@ -31,7 +31,7 @@ export default class BlogContent extends Component {
             <View style={styles.navBarStyle}>
                 <View style={styles.navBarContentStyle}>
                     <View style={[styles.topIconStyles,{paddingLeft:width*0.04}]}>
-                        <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <TouchableOpacity onPress={()=>this.props.navigator.pop()}>
                             <View>
                                 <Icon type='ionicon' color={'#FFFFFF'} name='ios-arrow-back-outline' size={30} />
                             </View>
