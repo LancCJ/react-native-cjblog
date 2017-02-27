@@ -14,7 +14,8 @@ import {
     StatusBar,
     ListView,
     Alert,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 
 import DataView      from  '../compo/DataView'
@@ -32,9 +33,10 @@ export default class ImagePage extends Component {
     constructor() {
         super()
         this.state = {
-            dataSource: ds.cloneWithRows([])
+            dataSource: ds.cloneWithRows([]),
+            isRefreshing:true
         }
-        that=this
+        Imagethat=this
     }
     componentWillMount() {
         this.fetchData();
@@ -57,7 +59,8 @@ export default class ImagePage extends Component {
                 if(retCode == Constant.SUCCESS) {
                     //Alert.alert(responseData.message);
                     this.setState({
-                        dataSource:ds.cloneWithRows(responseData.data)
+                        dataSource:ds.cloneWithRows(responseData.data),
+                        isRefreshing:false
                     });
                 } else if(retCode == Constant.FAIL){
                     Alert.alert(responseData.message);
@@ -118,6 +121,17 @@ export default class ImagePage extends Component {
             />
         )
     }
+
+    _onRefresh(){
+        console.log('刷新中');
+        this.setState({isRefreshing: true})
+        Imagethat.fetchData();
+    }
+
+    _onLoadMore(){
+        console.log('获取更多数据');
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -131,6 +145,17 @@ export default class ImagePage extends Component {
                     contentContainerStyle={styles.contentViewStyle}
                     scorllEnabled={false}
                     enableEmptySections={true}
+                    refreshControl={
+						<RefreshControl
+							refreshing={this.state.isRefreshing}
+							onRefresh={this._onRefresh.bind(this)}
+							tintColor='#FFDB42'
+							title='拼命加载中'
+							titleColor="black"
+							colors={['black']}
+							progressBackgroundColor="#FA5600"
+						/>
+                    }
                 />
             </View>
         );
