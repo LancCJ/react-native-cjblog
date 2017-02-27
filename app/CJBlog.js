@@ -20,15 +20,15 @@ import MinePage  from './mine/MinePage'
 import BlogContent  from './blog/BlogContent'
 import VideoContent  from './video/VideoContent'
 
-import {Icon } from 'react-native-elements'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { Scene, Router } from 'react-native-router-flux'
 
 class TabIcon extends React.Component {
     render() {
         return (
             <View style={{justifyContent: 'center', alignItems: 'center'}}>
-                <Icon name={this.props.tabIcon} size={20} color={this.props.selected ? "#FFDB42" : '#BBB'} />
-                <Text style={{color: this.props.selected ? '#FFDB42' : '#BBB', marginTop: 5, fontSize:12}}>{this.props.title}</Text>
+                <Icon name={this.props.tabIcon} size={20} color={this.props.selected ? "#FA5600" : '#BBB'} />
+                <Text style={{color: this.props.selected ? '#FA5600' : '#BBB', marginTop: 5, fontSize:12}}>{this.props.title}</Text>
             </View>
 
         )
@@ -60,20 +60,20 @@ export default class CJBlog extends Component {
         return (
             <Router onExitApp={this._backAndroidHandler}>
                 <Scene key="root" hideNavBar>
-                    <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}}>
-                        <Scene key="tab1" initial title="博客" icon={TabIcon} tabIcon="home" navigationBarStyle={{backgroundColor: '#ffdb42'}}>
-                            <Scene key='blog'  component={BlogPage} title='博客' hideTabBar/>
-                            <Scene key='blogContent'  component={BlogContent} title='博客内容' hideTabBar/>
+                    <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
+                        <Scene key="tab1"  initial title="博客" icon={TabIcon} tabIcon="list" >
+                            <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>
+                            <Scene key='BlogContent'  component={BlogContent} title='博客内容' hideNavBar/>
                         </Scene>
-                        <Scene key="tab2" title="美图" icon={TabIcon} tabIcon="circle-o" navigationBarStyle={{backgroundColor: '#ffdb42'}}>
-                            <Scene key="beauty" component={ImagePage} title="美图" hideTabBar/>
+                        <Scene key="tab2"  title="美图" icon={TabIcon} tabIcon="image" >
+                            <Scene key="Beauty" component={ImagePage} title="美图" hideNavBar/>
                         </Scene>
-                        <Scene key="tab3" title="视频" icon={TabIcon} tabIcon="music" navigationBarStyle={{backgroundColor: '#ffdb42'}}>
-                            <Scene key='video' title='视频' component={VideoPage} hideTabBar/>
-                            <Scene key='videoContent'  component={VideoContent} title='视频内容' hideTabBar/>
+                        <Scene key="tab3" title="视频" icon={TabIcon} tabIcon="video-camera" >
+                            <Scene key='Video' title='视频' component={VideoPage} hideNavBar/>
+                            <Scene key='VideoContent'  component={VideoContent} title='视频内容' hideNavBar/>
                         </Scene>
-                        <Scene key="tab4" title="我" icon={TabIcon} tabIcon="map-marker" navigationBarStyle={{backgroundColor: '#ffdb42'}}>
-                            <Scene key='mine' title='我' component={MinePage} hideTabBar/>
+                        <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
+                            <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
                         </Scene>
                     </Scene>
                 </Scene>
