@@ -14,10 +14,12 @@ import {
     ListView,
     Alert,
     ScrollView,
-    Platform
+    Platform,
+    TouchableOpacity
 } from 'react-native';
 
 import {Icon} from 'react-native-elements'
+import {Actions} from 'react-native-router-flux'
 
 import CommonCell from '../compo/CommonCell'
 import AppUrl   from '../common/AppUrl'
@@ -31,17 +33,19 @@ var {width,height}=Dimensions.get('window')
 export default class MinePage extends Component {
     renderTopUpView(){
         return (
-            <View style={[styles.TopUpViewStyle,{flexDirection:'row'}]}>
-                <View style={[{flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
-                    <Image source={{uri:'http://lanccj.synology.me:7070/blog/attached/avatar/default.jpg'}} style={{marginLeft:width*0.04,width:width*0.15,height:width*0.15,borderRadius:width*0.15/2}}/>
-                    <View style={[{marginLeft:width*0.02,flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}]}>
-                        <Text style={[{color:'#FFFFFF',fontSize:20}]}>陈健</Text>
+            <TouchableOpacity onPress={()=>Actions.InfoContent()}>
+                <View style={[styles.TopUpViewStyle,{flexDirection:'row'}]}>
+                    <View style={[{flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
+                        <Image source={{uri:'http://lanccj.synology.me:7070/blog/attached/avatar/default.jpg'}} style={{marginLeft:width*0.04,width:width*0.15,height:width*0.15,borderRadius:width*0.15/2}}/>
+                        <View style={[{marginLeft:width*0.02,flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}]}>
+                            <Text style={[{color:'#FFFFFF',fontSize:20}]}>陈健</Text>
+                        </View>
+                    </View>
+                    <View style={[{marginRight:width*0.04,justifyContent:'center',alignItems:'center'}]}>
+                        <Icon type='ionicon' color={'#F0EBF3'} name='ios-arrow-forward-outline' size={30} />
                     </View>
                 </View>
-                <View style={[{marginRight:width*0.04,justifyContent:'center',alignItems:'center'}]}>
-                    <Icon type='ionicon' color={'#F0EBF3'} name='ios-arrow-forward-outline' size={30} />
-                </View>
-            </View>
+            </TouchableOpacity>
         )
     }
     renderTopDownView(){

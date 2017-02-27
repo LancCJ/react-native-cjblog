@@ -16,6 +16,8 @@ import BlogPage  from './blog/BlogPage'
 import ImagePage from './image/ImagePage'
 import VideoPage from './video/VideoPage'
 import MinePage  from './mine/MinePage'
+import InfoContent  from './mine/InfoContent'
+import FeedBack  from './compo/FeedBack'
 
 import BlogContent  from './blog/BlogContent'
 import VideoContent  from './video/VideoContent'
@@ -74,6 +76,7 @@ export default class CJBlog extends Component {
                         </Scene>
                         <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
                             <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
+                            <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
                         </Scene>
                     </Scene>
                 </Scene>

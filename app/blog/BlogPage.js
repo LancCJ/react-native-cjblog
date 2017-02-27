@@ -37,7 +37,7 @@ export default class BlogPage extends Component {
         this.state = {
             dataSource: ds.cloneWithRows([])
         }
-        that=this
+        Blogthat=this
     }
     componentWillMount() {
         this.fetchData();
@@ -118,7 +118,7 @@ export default class BlogPage extends Component {
             <DataView
                 rowData={rowData}
                 dataType={Constant.Content_Type_BLOG}
-                callBackReadBlog={(sigalRowdata)=>that.readBlog(sigalRowdata)}
+                callBackReadBlog={(sigalRowdata)=>Blogthat.readBlog(sigalRowdata)}
             />
         )
     }

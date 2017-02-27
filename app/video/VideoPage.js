@@ -36,7 +36,7 @@ export default class VideoPage extends Component {
         this.state = {
             dataSource: ds.cloneWithRows([])
         }
-        that=this
+        Videothat=this
     }
     componentWillMount() {
         this.fetchData();
@@ -120,7 +120,7 @@ export default class VideoPage extends Component {
             <DataView
                 rowData={rowData}
                 dataType={Constant.Content_Type_VIDEO}
-                callBackReadBlog={(sigalRowdata)=>that.readBlog(sigalRowdata)}
+                callBackReadBlog={(sigalRowdata)=>Videothat.readBlog(sigalRowdata)}
             />
         )
     }
