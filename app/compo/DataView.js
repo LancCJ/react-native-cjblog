@@ -16,6 +16,7 @@ import Constant from  '../common/Constant'
 
 import HTMLView from 'react-native-htmlview'
 import { Icon } from 'react-native-elements'
+var Lightbox = require('react-native-lightbox');
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -84,7 +85,11 @@ export default class DataView extends Component {
                                 <View style={[styles.imagecontainer]}>
                                     <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
                                         {/*<Image source={{uri:AppUrl.ImageAttachedUrl+this.props.rowData.img}} style={styles.DataItemVideoImageStyle}/>*/}
-                                        <Image source={{uri:AppUrl.ImageAttachedUrl+'67cb3942417e43a4a4f9ba2638abcb7c.jpg'}} style={styles.DataItemImageImageStyle}/>
+
+                                        <Lightbox navigator={this.props.navigator}>
+                                            <Image source={{uri:AppUrl.ImageAttachedUrl+'67cb3942417e43a4a4f9ba2638abcb7c.jpg'}} style={styles.DataItemImageImageStyle}/>
+                                        </Lightbox>
+
                                     </TouchableOpacity>
                                 </View>
                             )
