@@ -136,6 +136,7 @@ export default class ImagePage extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar
+                    backgroundColor="#FA5600"
                     barStyle="light-content"
                 />
                 {this.renderNavBar()}

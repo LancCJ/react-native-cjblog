@@ -92,6 +92,8 @@ export default class BlogPage extends Component {
                             placeholderTextColor="#DEDEDE"
                             underlineColorAndroid='transparent'
                             style={styles.topInputStyle}
+                            textAlignVertical='center'
+                            includeFontPadding={false}
                         />
                     </View>
                 </View>
@@ -185,6 +187,7 @@ export default class BlogPage extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar
+                    backgroundColor="#FA5600"
                     barStyle="light-content"
                 />
                 {this.renderNavBar()}
@@ -238,9 +241,7 @@ const styles = StyleSheet.create({
         width:width*0.7,
         height:height*0.05,
         backgroundColor: "#FFFFFF",
-        borderRadius:width*0.7/30,
-        paddingLeft:width*0.02,
-        fontSize:15
+        borderRadius:width*0.7/30
     },
     topIconStyles:{
         height:height*0.05,

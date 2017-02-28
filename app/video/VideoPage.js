@@ -15,7 +15,8 @@ import {
     ListView,
     Alert,
     Image,
-    RefreshControl
+    RefreshControl,
+    ScrollView
 } from 'react-native';
 
 import DataView      from  '../compo/DataView'
@@ -126,16 +127,18 @@ export default class VideoPage extends Component {
         return (
             <View style={styles.container}>
                 <StatusBar
+                    backgroundColor="#FA5600"
                     barStyle="light-content"
                 />
                 {this.renderNavBar()}
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow}
-                    contentContainerStyle={styles.contentViewStyle}
-                    scorllEnabled={false}
-                    enableEmptySections={true}
-                    refreshControl={
+                <ScrollView>
+                    <ListView
+                        dataSource={this.state.dataSource}
+                        renderRow={this.renderRow}
+                        contentContainerStyle={styles.contentViewStyle}
+                        scorllEnabled={false}
+                        enableEmptySections={true}
+                        refreshControl={
 						<RefreshControl
 							refreshing={this.state.isRefreshing}
 							onRefresh={this._onRefresh.bind(this)}
@@ -147,7 +150,8 @@ export default class VideoPage extends Component {
 						/>
                     }
 
-                />
+                    />
+                </ScrollView>
             </View>
         );
     }
