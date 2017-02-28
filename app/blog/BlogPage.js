@@ -139,6 +139,7 @@ export default class BlogPage extends Component {
                         id:sigalRowdata.id
                     }
 
+
                     //console.log(array[index]);
 
                     this.setState({
