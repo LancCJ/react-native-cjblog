@@ -14,7 +14,7 @@ import {
 
 import BlogPage  from './blog/BlogPage'
 import ImagePage from './image/ImagePage'
-import VideoPage from './video/VideoPage'
+import VideoPage from '@video/VideoPage'
 import MinePage  from './mine/MinePage'
 import InfoContent  from './mine/InfoContent'
 import FeedBack  from './compo/FeedBack'
