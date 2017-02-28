@@ -38,7 +38,8 @@ export default class BlogPage extends Component {
             dataSource: ds.cloneWithRows([]),
             isRefreshing:true,
             pageNum:1,
-            pageSize:6
+            pageSize:6,
+            tempDataSource: []
         }
         Blogthat=this
     }
@@ -64,13 +65,12 @@ export default class BlogPage extends Component {
                     //Alert.alert(responseData.message);
                     this.setState({
                         dataSource:this.state.dataSource.cloneWithRows(responseData.data),
+                        tempDataSource:responseData.data,
                         isRefreshing:false,
                         pageNum:this.state.pageNum+1
                     });
-                } else if(retCode == Constant.FAIL){
+                } else {
                     Alert.alert(responseData.message);
-                }else {
-                    Alert.alert('API Services lost');
                 }
             }).catch((error) => {
                 Alert.alert('API Services is ShutDown');
@@ -101,28 +101,66 @@ export default class BlogPage extends Component {
 
     readBlog = (sigalRowdata) => {
         //Alert.alert('进来了')
-        console.log(sigalRowdata);
-
-        Actions.BlogContent({sigalRowdata:sigalRowdata});
+        //console.log(sigalRowdata);
 
 
-        // const { navigator } = this.props;
-        // console.log(navigator);
-        // //为什么这里可以取得 props.navigator?请看上文:
-        // //<Component {...route.params} navigator={navigator} />
-        // //这里传递了navigator作为props
-        // if(navigator) {
-        //     navigator.push({
-        //         name: sigalRowdata.title,
-        //         component: BlogContent,
-        //         params:{
-        //             sigalRowdata:sigalRowdata
-        //         }
-        //     })
-        // }
+        //点击查看后更新数量
+
+        //网络获取数据
+        var url = AppUrl.UpdateViewCountUrl;
+        var options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body:'id='+sigalRowdata.id
+        }
+
+        fetch(url, options).then((response) => response.json())
+            .then((responseData) => {
+                var retCode = responseData.code;
+                if(retCode == Constant.SUCCESS) {
+                    //更新数据
+
+                    var array = this.state.tempDataSource.slice()
+                    var index = array.indexOf(sigalRowdata)
+
+                    sigalRowdata.view=sigalRowdata.view+1
+
+                    //console.log(sigalRowdata);
+
+                    array[index]={
+                        view:sigalRowdata.view,
+                        content:sigalRowdata.content,
+                        content_show:sigalRowdata.content_show,
+                        create_time:sigalRowdata.create_time,
+                        image:sigalRowdata.image,
+                        title:sigalRowdata.title,
+                        id:sigalRowdata.id
+                    }
+
+                    //console.log(array[index]);
+
+                    this.setState({
+                        dataSource: this.state.dataSource.cloneWithRows(array),
+                        tempDataSource: array
+                    });
+
+                    //console.log(oldRowData);
+                    //然后去修改数据的数值
+                    //重新渲染那一行数据
+                    //跳转页面到详细内容
+                    Actions.BlogContent({sigalRowdata:sigalRowdata});
+                } else {
+                    Alert.alert(responseData.message);
+                }
+            }).catch((error) => {
+                Alert.alert('API Services is ShutDown');
+        }).done();
+
     }
 
-    renderRow(rowData){
+    renderRow(rowData,sectionId,indexId){
         return (
             <DataView
                 rowData={rowData}

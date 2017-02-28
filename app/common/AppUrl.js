@@ -18,5 +18,8 @@ export default class AppUrl extends Component {
     //列表请求地址
     static BlogListUrl=AppUrl.HostUrl+'blog/list';
 
+    //阅读次数更新地址
+    static UpdateViewCountUrl=AppUrl.HostUrl+'blog/updateviewcount';
+
 }
 
