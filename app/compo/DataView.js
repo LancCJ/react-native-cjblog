@@ -71,7 +71,9 @@ export default class DataView extends Component {
                         this.props.dataType===Constant.Content_Type_VIDEO?(
                                 <View style={[styles.videocontainer]}>
                                     <Image source={{uri:AppUrl.VideoAttachedUrl+this.props.rowData.image}} style={styles.DataItemVideoImageStyle}>
-                                        <Text numberOfLines={2} style={[{marginLeft:width*0.04,backgroundColor:'transparent',color:'#FFFFFF',fontWeight: 'bold',fontSize:width*0.05,marginTop:height*0.01}]}>{this.props.rowData.title}</Text>
+                                        <View style={[{height:height*0.04}]}>
+                                            <Text numberOfLines={2} style={[{marginLeft:width*0.04,backgroundColor:'transparent',color:'#FFFFFF',fontWeight: 'bold',fontSize:width*0.05,marginTop:height*0.01,lineHeight:height*0.04}]}>{this.props.rowData.title}</Text>
+                                        </View>
                                         <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
                                             <Icon
                                                 type='ionicon'
@@ -81,13 +83,6 @@ export default class DataView extends Component {
                                             />
                                         </TouchableOpacity>
                                     </Image>
-                                    {/*<View style={styles.videoInfoStyle}>*/}
-                                    {/*<Text style={{color:'#020202'}} numberOfLines={1}>{this.props.rowData.create_time}</Text>*/}
-                                    {/*<Text style={{color:'#020202'}}>{this.props.rowData.view}</Text>*/}
-                                    {/*</View>*/}
-                                    {/*<HTMLView*/}
-                                    {/*value={this.props.rowData.pre}*/}
-                                    {/*/>*/}
                                 </View>
                             ):(
                                 <View style={[styles.imagecontainer]}>
@@ -126,6 +121,7 @@ const styles = StyleSheet.create({
         resizeMode:'contain'
     },
     videocontainer:{
+        marginBottom:height*0.02,
         width:width,
         height:height*0.3,
         paddingLeft:width*0.04,
@@ -150,7 +146,6 @@ const styles = StyleSheet.create({
 
     },
     play:{
-        marginBottom:height*0.3/2*0.5*0.5,
         width:width*0.15,
         height:width*0.15,
         paddingLeft:width*0.15*0.3,
@@ -158,7 +153,12 @@ const styles = StyleSheet.create({
         borderColor:'#fff',
         borderWidth:1,
         borderRadius:width*0.15/2,
-        color:'#FA5600'
+        color:'#FA5600',
+
+
+        right:width*0.5-width*0.15*0.5,
+        top:height*0.3*0.5-width*0.15*0.5-width*0.05,
+        position:'absolute'
     },
     imagecontainer:{
         width:width*0.5-width*0.01,

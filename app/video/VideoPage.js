@@ -102,20 +102,6 @@ export default class VideoPage extends Component {
 
         Actions.VideoContent({sigalRowdata:sigalRowdata});
 
-        // const { navigator } = this.props;
-        // console.log(navigator)
-        // //为什么这里可以取得 props.navigator?请看上文:
-        // //<Component {...route.params} navigator={navigator} />
-        // //这里传递了navigator作为props
-        // if(navigator) {
-        //     navigator.push({
-        //         name: sigalRowdata.title,
-        //         component: VideoContent,
-        //         params:{
-        //             sigalRowdata:sigalRowdata
-        //         }
-        //     })
-        // }
     }
 
     renderRow(rowData){
@@ -161,6 +147,7 @@ export default class VideoPage extends Component {
 							progressBackgroundColor="#FA5600"
 						/>
                     }
+
                 />
             </View>
         );
