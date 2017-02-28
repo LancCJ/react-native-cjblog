@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#EDEDF3"
     },
     navBarStyle:{
-        height:height*0.06+(Platform.OS==='ios'?20:0),
+        height:height*0.08+(Platform.OS==='ios'?20:0),
         backgroundColor:'#FA5600'
     },
     TopUpViewStyle: {

@@ -35,44 +35,44 @@ export default class DataView extends Component {
     }
     render() {
         return (
-                <View>
+            <View>
 
-                    {this.props.dataType===Constant.Content_Type_BLOG?(
-                            <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
-                                <View style={styles.container}>
-                                    <Image source={{uri:AppUrl.BlogAttachedUrl+this.props.rowData.image}} style={styles.DataItemImageStyle}/>
+                {this.props.dataType===Constant.Content_Type_BLOG?(
+                        <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
+                            <View style={styles.container}>
+                                <Image source={{uri:AppUrl.BlogAttachedUrl+this.props.rowData.image}} style={styles.DataItemImageStyle}/>
 
-                                    <View style={{padding:width*0.02,width:width-width*0.04*2-height*0.12,height:height*0.15,justifyContent:'space-between'}}>
-                                        <View style={{height:(height*0.15-height*0.03*2)/4,width:width-width*0.04*2-height*0.12-width*0.02,flexDirection:'row',justifyContent:'space-between'}}>
-                                            <Text>{this.props.rowData.title}</Text>
+                                <View style={{padding:width*0.02,width:width-width*0.04*2-height*0.12,height:height*0.15,justifyContent:'space-between'}}>
+                                    <View style={{height:(height*0.2-height*0.03*2)/4,width:width-width*0.04*2-height*0.12-width*0.02,flexDirection:'row',justifyContent:'space-between'}}>
+                                        <Text>{this.props.rowData.title}</Text>
+                                    </View>
+
+                                    <Text style={{height:(height*0.2-height*0.03*2)/4*2,width:width-width*0.04*2-height*0.12-width*0.02,color:'#5E6977',fontSize:width*0.03}} numberOfLines={2}>{this.props.rowData.content_show}</Text>
+
+                                    <View style={{height:(height*0.2-height*0.03*2)/4,width:width-width*0.04*2-height*0.12-width*0.02,flexDirection:'row',justifyContent:'space-between'}}>
+                                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                                            <Text style={{color:'#020202'}}>{this.props.rowData.create_time}</Text>
                                         </View>
-
-                                        <Text style={{height:(height*0.15-height*0.03*2)/4*2,width:width-width*0.04*2-height*0.12-width*0.02,color:'#5E6977',fontSize:width*0.03}} numberOfLines={2}>{this.props.rowData.content_show}</Text>
-
-                                        <View style={{height:(height*0.15-height*0.03*2)/4,width:width-width*0.04*2-height*0.12-width*0.02,flexDirection:'row',justifyContent:'space-between'}}>
-                                            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                                                <Text style={{color:'#020202'}}>{this.props.rowData.create_time}</Text>
-                                            </View>
-                                            <View style={[{flexDirection:'row'}]}>
-                                                <Icon
-                                                    name='eye'
-                                                    type='font-awesome'
-                                                    color="#5E6977"
-                                                    size={width*0.04}
-                                                    />
-                                                <Text style={{color:'#020202'}}>{this.props.rowData.view}</Text>
-                                            </View>
+                                        <View style={[{flexDirection:'row'}]}>
+                                            <Icon
+                                                name='eye'
+                                                type='font-awesome'
+                                                color="#5E6977"
+                                                size={width*0.04}
+                                            />
+                                            <Text style={{color:'#020202'}}>{this.props.rowData.view}</Text>
                                         </View>
                                     </View>
                                 </View>
-                            </TouchableOpacity>
-                        ):(
+                            </View>
+                        </TouchableOpacity>
+                    ):(
 
                         this.props.dataType===Constant.Content_Type_VIDEO?(
                                 <View style={[styles.videocontainer]}>
                                     <Image source={{uri:AppUrl.VideoAttachedUrl+this.props.rowData.image}} style={styles.DataItemVideoImageStyle}>
-                                        <View style={[{height:height*0.04}]}>
-                                            <Text numberOfLines={2} style={[{marginLeft:width*0.04,backgroundColor:'transparent',color:'#FFFFFF',fontWeight: 'bold',fontSize:width*0.05,marginTop:height*0.01,lineHeight:height*0.04}]}>{this.props.rowData.title}</Text>
+                                        <View style={[{height:Math.round(height*0.04)*2}]}>
+                                            <Text numberOfLines={2} style={[{marginLeft:width*0.04,backgroundColor:'transparent',color:'#FFFFFF',fontWeight: 'bold',fontSize:width*0.05,marginTop:height*0.01,lineHeight:Math.round(height*0.04) }]}>{this.props.rowData.title}</Text>
                                         </View>
                                         <TouchableOpacity onPress={()=>{this.clickItem(this.props.rowData)}}>
                                             <Icon
@@ -96,8 +96,8 @@ export default class DataView extends Component {
                                     </TouchableOpacity>
                                 </View>
                             )
-                        )}
-                </View>
+                    )}
+            </View>
         );
     }
 }
@@ -105,7 +105,7 @@ export default class DataView extends Component {
 const styles = StyleSheet.create({
     container:{
         width:width,
-        height:height*0.15,
+        height:height*0.2,
         paddingLeft:width*0.04,
         paddingRight:width*0.04,
         flexDirection:'row',
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
 
 
         right:width*0.5-width*0.15*0.5,
-        top:height*0.3*0.5-width*0.15*0.5-width*0.05,
+        top:height*0.3*0.5-width*0.15*0.5-Math.round(height*0.04)*2,
         position:'absolute'
     },
     imagecontainer:{

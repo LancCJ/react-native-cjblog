@@ -44,6 +44,7 @@ export default class VideoPage extends Component {
         this.fetchData();
     }
     fetchData(){
+        console.log('Go to get data');
         //网络获取数据
         var url = AppUrl.BlogListUrl;
         var options = {
@@ -57,20 +58,18 @@ export default class VideoPage extends Component {
         fetch(url, options).then((response) => response.json())
             .then((responseData) => {
                 var retCode = responseData.code;
-                //console.log(responseData);
+                console.log(responseData);
                 if(retCode == Constant.SUCCESS) {
                     //Alert.alert(responseData.message);
                     this.setState({
                         dataSource:ds.cloneWithRows(responseData.data),
                         isRefreshing:false
                     });
-                } else if(retCode == Constant.FAIL){
+                } else {
                     Alert.alert(responseData.message);
-                }else {
-                    Alert.alert('API Services lost');
                 }
             }).catch((error) => {
-            Alert.alert('API Services is ShutDown');
+                Alert.alert('API Services is ShutDown');
         }).done();
     }
     renderNavBar(){
@@ -160,11 +159,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#EDEDF3"
     },
     navBarStyle:{
-        height:height*0.06+(Platform.OS==='ios'?20:0),
+        height:height*0.08+(Platform.OS==='ios'?20:0),
         backgroundColor:'#FA5600'
     },
     navBarContentStyle:{
-        marginTop:Platform.OS==='ios'?20:0,
+        marginTop:Platform.OS==='ios'?20+height*0.01:height*0.01,
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-around'

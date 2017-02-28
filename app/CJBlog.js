@@ -63,14 +63,14 @@ export default class CJBlog extends Component {
             <Router onExitApp={this._backAndroidHandler}>
                 <Scene key="root" hideNavBar>
                     <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
-                        <Scene key="tab1"   title="博客" icon={TabIcon} tabIcon="list" >
+                        <Scene key="tab1"   initial title="博客" icon={TabIcon} tabIcon="list" >
                             <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>
                             <Scene key='BlogContent'  component={BlogContent} title='博客内容' hideNavBar/>
                         </Scene>
                         <Scene key="tab2"  title="美图" icon={TabIcon} tabIcon="image" >
                             <Scene key="Beauty" component={ImagePage} title="美图" hideNavBar/>
                         </Scene>
-                        <Scene key="tab3" initial title="视频" icon={TabIcon} tabIcon="video-camera" >
+                        <Scene key="tab3"  title="视频" icon={TabIcon} tabIcon="video-camera" >
                             <Scene key='Video' title='视频' component={VideoPage} hideNavBar/>
                             <Scene key='VideoContent'  component={VideoContent} title='视频内容' hideNavBar/>
                         </Scene>

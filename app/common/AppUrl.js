@@ -13,7 +13,7 @@ export default class AppUrl extends Component {
     static ImageAttachedUrl='http://lanccj.synology.me:7070/blog/attached/beauty/'
 
     //服务器IP地址
-    static HostUrl='http://localhost:8088/api/v1/';
+    static HostUrl='http://192.168.0.100:8088/api/v1/';
 
     //列表请求地址
     static BlogListUrl=AppUrl.HostUrl+'blog/list';
