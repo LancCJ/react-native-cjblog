@@ -30,13 +30,15 @@ export default class BlogContent extends Component {
         return (
             <View style={styles.navBarStyle}>
                 <View style={styles.navBarContentStyle}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
                     <View style={[styles.topIconStyles,{paddingLeft:width*0.04}]}>
-                        <TouchableOpacity onPress={()=>Actions.pop()}>
+
                             <View>
                                 <Icon type='ionicon' color={'#FFFFFF'} name='ios-arrow-back-outline' size={30} />
                             </View>
-                        </TouchableOpacity>
+
                     </View>
+                    </TouchableOpacity>
                     {/**中间**/}
                     <View>
                         <Text style={styles.topTextStyles}>{this.props.sigalRowdata.title}</Text>

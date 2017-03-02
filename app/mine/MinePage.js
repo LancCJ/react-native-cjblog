@@ -73,16 +73,14 @@ export default class MinePage extends Component {
                     contentInset={{top:-height*0.16*2}}
                     contentOffset={{y:height*0.16*2}}
                 >
-                <View style={styles.navBarStyle}>
-
-                            <View style={styles.TopViewStyle}>
-                                {this.renderTopUpView()}
-                                {this.renderTopDownView()}
-                            </View>
-
-                            <View style={[{marginTop:height*0.02}]}>
-                                <CommonCell id='infoUpdate'     name='密码修改' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600"/>
-                            </View>
+                    <View style={styles.navBarStyle}>
+                        <View style={styles.TopViewStyle}>
+                            {this.renderTopUpView()}
+                            {this.renderTopDownView()}
+                        </View>
+                    </View>
+                    <View style={[{marginTop:height*0.02+(Platform.OS==='ios'?height*0.16*2:0)}]}>
+                        <CommonCell id='infoUpdate'     name='密码修改' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600"/>
                     </View>
                 </ScrollView>
 
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#EDEDF3"
     },
     navBarStyle:{
-        height:height*0.08+(Platform.OS==='ios'?20:0),
+        height:height*0.16+(Platform.OS==='ios'?20:0),
         backgroundColor:'#FA5600'
     },
     TopUpViewStyle: {

@@ -92,8 +92,6 @@ export default class BlogPage extends Component {
                             placeholderTextColor="#DEDEDE"
                             underlineColorAndroid='transparent'
                             style={styles.topInputStyle}
-                            textAlignVertical='center'
-                            includeFontPadding={false}
                         />
                     </View>
                 </View>
@@ -241,7 +239,9 @@ const styles = StyleSheet.create({
         width:width*0.7,
         height:height*0.05,
         backgroundColor: "#FFFFFF",
-        borderRadius:width*0.7/30
+        borderRadius:width*0.7/30,
+        paddingLeft:width*0.02,
+        fontSize:15
     },
     topIconStyles:{
         height:height*0.05,

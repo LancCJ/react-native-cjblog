@@ -53,7 +53,7 @@ export default class DataView extends Component {
                                         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                                             <Text style={{color:'#020202'}}>{this.props.rowData.create_time}</Text>
                                         </View>
-                                        <View style={[{flexDirection:'row'}]}>
+                                        <View style={[{flexDirection:'row',alignItems:'center'}]}>
                                             <Icon
                                                 name='eye'
                                                 type='font-awesome'
