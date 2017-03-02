@@ -11,6 +11,10 @@ import {
     ListView,
     Alert
 } from 'react-native';
+
+var Dimensions = require('Dimensions')
+var {width,height}=Dimensions.get('window')
+
 /**
  *
  */
@@ -26,7 +30,8 @@ export default class UpdatePwd extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        width:width/2,
+        height:height/2,
         backgroundColor: "#FFFFFF"
     }
 });

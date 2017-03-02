@@ -84,10 +84,10 @@ export default class CJBlog extends Component {
                                 <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
                                     <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
                                     <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
+                                    <Scene key='UpdatePwdMadal' component={UpdatePwd} title='修改密码' hideNavBar/>
                                 </Scene>
                             </Scene>
                         </Scene>
-                        <Scene key='UpdatePwdMadal' component={UpdatePwd} />
                     </Scene>
                 </Router>
         );

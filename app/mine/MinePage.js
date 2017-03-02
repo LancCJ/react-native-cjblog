@@ -20,6 +20,8 @@ import {
 
 import {Icon} from 'react-native-elements'
 import {Actions} from 'react-native-router-flux'
+import Modal from 'react-native-modalbox';
+import { FormLabel, FormInput,FormValidationMessage ,Button} from 'react-native-elements'
 
 import CommonCell from '../compo/CommonCell'
 import UpdatePwd   from './UpdatePwd'
@@ -75,9 +77,9 @@ export default class MinePage extends Component {
         )
     }
     goPage(id){
-        Alert.alert('goPage='+id);
+        //Alert.alert('goPage='+id);
         if(id==='infoUpdate'){
-            Actions.UpdatePwdMadal();
+            this.refs.updatePwdModal.open();
         }
     }
     render() {
@@ -98,6 +100,18 @@ export default class MinePage extends Component {
                     </View>
                 </ScrollView>
 
+                <Modal style={[styles.updatePwdModal]} position={"center"} ref={"updatePwdModal"} >
+                    <FormLabel>原密码</FormLabel>
+                    <FormInput/>
+                    <FormLabel>新密码</FormLabel>
+                    <FormInput/>
+                    <FormLabel>确认密码</FormLabel>
+                    <FormInput/>
+                    <FormValidationMessage>错误信息显示在此</FormValidationMessage>
+                    <Button
+                        backgroundColor="#FA5600"
+                        title='修改' />
+                </Modal>
             </View>
         );
     }
@@ -143,6 +157,13 @@ const styles = StyleSheet.create({
         height:Platform.OS==='ios'?height*0.16*3:height*0.16,
         backgroundColor: "#FA5600",
         marginTop:Platform.OS==='ios'?20:0,
+    },
+
+
+
+    updatePwdModal:{
+        width:width*0.8,
+        height:height*0.42
     }
 });
 
