@@ -39,9 +39,14 @@ export default class BlogPage extends Component {
             isRefreshing:true,
             pageNum:1,
             pageSize:6,
-            tempDataSource: []
+            tempDataSource: [],
+            loaded: 0
         }
         Blogthat=this
+        // bind functions
+        this._onRefresh = this._onRefresh.bind(this)
+        this.fetchData = this.fetchData.bind(this)
+
     }
     componentWillMount() {
         this.fetchData();
@@ -158,7 +163,6 @@ export default class BlogPage extends Component {
             }).catch((error) => {
                 Alert.alert('API Services is ShutDown');
         }).done();
-
     }
 
     renderRow(rowData,sectionId,indexId){
@@ -173,7 +177,48 @@ export default class BlogPage extends Component {
 
     _onRefresh(){
         console.log('刷新中');
-        this.setState({isRefreshing: true})
+        this.setState({isRefreshing: true});
+
+
+        //网络获取数据
+        var url = AppUrl.BlogListUrl;
+        var options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body:'pageSize='+this.state.pageSize+'&pageNum='+this.state.pageNum
+        }
+
+        fetch(url, options).then((response) => response.json())
+            .then((responseData) => {
+                var retCode = responseData.code;
+                //console.log(responseData);
+                if(retCode == Constant.SUCCESS) {
+                    //Alert.alert(responseData.message);
+                    console.log(responseData.data.size)
+                    if(responseData.data.length>0){
+                        const rowData=(responseData.data).concat(this.state.tempDataSource.slice());
+
+                        this.setState({
+                            dataSource:this.state.dataSource.cloneWithRows(rowData),
+                            tempDataSource:rowData,
+                            isRefreshing:false,
+                            pageNum:this.state.pageNum+1,
+                            loaded: this.state.loaded + 6,
+                        });
+                    }else{
+                        this.setState({
+                            isRefreshing:false
+                        });
+                        Alert.alert('没有更多数据');
+                    }
+                } else {
+                    Alert.alert(responseData.message);
+                }
+            }).catch((error) => {
+            Alert.alert('API Services is ShutDown');
+        }).done();
     }
 
     _onLoadMore(){
@@ -199,11 +244,11 @@ export default class BlogPage extends Component {
                     refreshControl={
 						<RefreshControl
 							refreshing={this.state.isRefreshing}
-							//onRefresh={this._onRefresh.bind(this)}
+							onRefresh={this._onRefresh}
 							tintColor='#FFDB42'
 							title='拼命加载中'
-							titleColor="black"
-							colors={['black']}
+							titleColor="#020202"
+							colors={['#FFDB42']}
 							progressBackgroundColor="#FA5600"
 						/>
                     }

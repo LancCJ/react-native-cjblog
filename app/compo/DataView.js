@@ -44,7 +44,7 @@ export default class DataView extends Component {
 
                                 <View style={{padding:width*0.02,width:width-width*0.04*2-height*0.12,height:height*0.15,justifyContent:'space-between'}}>
                                     <View style={{height:(height*0.2-height*0.03*2)/4,width:width-width*0.04*2-height*0.12-width*0.02,flexDirection:'row',justifyContent:'space-between'}}>
-                                        <Text>{this.props.rowData.title}</Text>
+                                        <Text numberOfLines={1}>{this.props.rowData.title}</Text>
                                     </View>
 
                                     <Text style={{height:(height*0.2-height*0.03*2)/4*2,width:width-width*0.04*2-height*0.12-width*0.02,color:'#5E6977',fontSize:width*0.03}} numberOfLines={2}>{this.props.rowData.content_show}</Text>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#FFFFFF'
     },
     DataItemImageStyle:{
-        height:height*0.12,
+        height:height*0.15,
         width:height*0.12,
         resizeMode:'contain'
     },
