@@ -1,0 +1,48 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "launch_screen.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "launch_screen-1.jpg",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "launch_screen-2.jpg",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "launch_screen-7.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "launch_screen-3.jpg",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "launch_screen-4.jpg",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "launch_screen-5.jpg",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "filename" : "launch_screen-6.jpg",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

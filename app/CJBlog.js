@@ -66,30 +66,30 @@ export default class CJBlog extends Component {
 
     render() {
         return (
-            <Router onExitApp={this._backAndroidHandler} >
-                <Scene key="modal" component={Modal} >
-                    <Scene key="root">
-                        <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
-                            <Scene key="tab1"   initial title="博客" icon={TabIcon} tabIcon="list" >
-                                <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>
-                                <Scene key='BlogContent'  component={BlogContent} title='博客内容' hideNavBar/>
-                            </Scene>
-                            <Scene key="tab2"  title="美图" icon={TabIcon} tabIcon="image" >
-                                <Scene key="Beauty" component={ImagePage} title="美图" hideNavBar/>
-                            </Scene>
-                            <Scene key="tab3"  title="视频" icon={TabIcon} tabIcon="video-camera" >
-                                <Scene key='Video' title='视频' component={VideoPage} hideNavBar/>
-                                <Scene key='VideoContent'  component={VideoContent} title='视频内容' hideNavBar/>
-                            </Scene>
-                            <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
-                                <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
-                                <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
+                <Router onExitApp={this._backAndroidHandler} >
+                    <Scene key="modal" component={Modal} >
+                        <Scene key="root">
+                            <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
+                                <Scene key="tab1"   initial title="博客" icon={TabIcon} tabIcon="list" >
+                                    <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>
+                                    <Scene key='BlogContent'  component={BlogContent} title='博客内容' hideNavBar/>
+                                </Scene>
+                                <Scene key="tab2"  title="美图" icon={TabIcon} tabIcon="image" >
+                                    <Scene key="Beauty" component={ImagePage} title="美图" hideNavBar/>
+                                </Scene>
+                                <Scene key="tab3"  title="视频" icon={TabIcon} tabIcon="video-camera" >
+                                    <Scene key='Video' title='视频' component={VideoPage} hideNavBar/>
+                                    <Scene key='VideoContent'  component={VideoContent} title='视频内容' hideNavBar/>
+                                </Scene>
+                                <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
+                                    <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
+                                    <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
+                                </Scene>
                             </Scene>
                         </Scene>
+                        <Scene key='UpdatePwdMadal' component={UpdatePwd} />
                     </Scene>
-                    <Scene key='UpdatePwdMadal' component={UpdatePwd} />
-                </Scene>
-            </Router>
+                </Router>
         );
     }
 }
