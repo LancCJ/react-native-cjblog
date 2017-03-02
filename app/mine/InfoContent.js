@@ -29,13 +29,15 @@ export default class InfoContent extends Component {
         return (
             <View style={styles.navBarStyle}>
                 <View style={styles.navBarContentStyle}>
-                    <View style={[styles.topIconStyles,{paddingLeft:width*0.04}]}>
-                        <TouchableOpacity onPress={()=>Actions.pop()}>
+                    <TouchableOpacity onPress={()=>Actions.pop()}>
+                        <View style={[styles.topIconStyles,{paddingLeft:width*0.04}]}>
+
                             <View>
                                 <Icon type='ionicon' color={'#FFFFFF'} name='ios-arrow-back-outline' size={30} />
                             </View>
-                        </TouchableOpacity>
-                    </View>
+
+                        </View>
+                    </TouchableOpacity>
                     {/**中间**/}
                     <View>
                         <Text style={styles.topTextStyles}>用户信息</Text>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFFFF"
     },
     navBarStyle:{
-        height:height*0.06+(Platform.OS==='ios'?20:0),
+        height:height*0.08+(Platform.OS==='ios'?20:0),
         backgroundColor:'#FA5600'
     },
     navBarContentStyle:{

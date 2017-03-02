@@ -22,7 +22,7 @@ import {Icon} from 'react-native-elements'
 import {Actions} from 'react-native-router-flux'
 
 import CommonCell from '../compo/CommonCell'
-import AppUrl   from '../common/AppUrl'
+import UpdatePwd   from './UpdatePwd'
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -31,6 +31,14 @@ var {width,height}=Dimensions.get('window')
  *我的
  */
 export default class MinePage extends Component {
+    constructor() {
+        super()
+        this.state = {
+
+        }
+        // bind functions
+        this.goPage = this.goPage.bind(this)
+    }
     renderTopUpView(){
         return (
             <TouchableOpacity onPress={()=>Actions.InfoContent()}>
@@ -66,6 +74,12 @@ export default class MinePage extends Component {
             </View>
         )
     }
+    goPage(id){
+        Alert.alert('goPage='+id);
+        if(id==='infoUpdate'){
+            Actions.UpdatePwdMadal();
+        }
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -80,7 +94,7 @@ export default class MinePage extends Component {
                         </View>
                     </View>
                     <View style={[{marginTop:height*0.02+(Platform.OS==='ios'?height*0.16*2:0)}]}>
-                        <CommonCell id='infoUpdate'     name='密码修改' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600"/>
+                        <CommonCell id='infoUpdate'     name='密码修改' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600" callBackClick={(id)=>this.goPage(id)}/>
                     </View>
                 </ScrollView>
 

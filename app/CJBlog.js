@@ -17,13 +17,15 @@ import ImagePage from './image/ImagePage'
 import VideoPage from '@video/VideoPage'
 import MinePage  from './mine/MinePage'
 import InfoContent  from './mine/InfoContent'
+import UpdatePwd  from './mine/UpdatePwd'
 import FeedBack  from './compo/FeedBack'
 
 import BlogContent  from './blog/BlogContent'
 import VideoContent  from './video/VideoContent'
 
+import SplashScreen from 'react-native-splash-screen'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Scene, Router } from 'react-native-router-flux'
+import { Scene, Router,Modal } from 'react-native-router-flux'
 
 class TabIcon extends React.Component {
     render() {
@@ -45,6 +47,10 @@ export default class CJBlog extends Component {
         }
     }
 
+    componentDidMount() {
+        SplashScreen.hide();
+    }
+
     _backAndroidHandler() {
         if (Platform.OS === 'android') {
             if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
@@ -60,25 +66,28 @@ export default class CJBlog extends Component {
 
     render() {
         return (
-            <Router onExitApp={this._backAndroidHandler}>
-                <Scene key="root" hideNavBar>
-                    <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
-                        <Scene key="tab1"   initial title="博客" icon={TabIcon} tabIcon="list" >
-                            <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>
-                            <Scene key='BlogContent'  component={BlogContent} title='博客内容' hideNavBar/>
-                        </Scene>
-                        <Scene key="tab2"  title="美图" icon={TabIcon} tabIcon="image" >
-                            <Scene key="Beauty" component={ImagePage} title="美图" hideNavBar/>
-                        </Scene>
-                        <Scene key="tab3"  title="视频" icon={TabIcon} tabIcon="video-camera" >
-                            <Scene key='Video' title='视频' component={VideoPage} hideNavBar/>
-                            <Scene key='VideoContent'  component={VideoContent} title='视频内容' hideNavBar/>
-                        </Scene>
-                        <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
-                            <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
-                            <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
+            <Router onExitApp={this._backAndroidHandler} >
+                <Scene key="modal" component={Modal} >
+                    <Scene key="root">
+                        <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
+                            <Scene key="tab1"   initial title="博客" icon={TabIcon} tabIcon="list" >
+                                <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>
+                                <Scene key='BlogContent'  component={BlogContent} title='博客内容' hideNavBar/>
+                            </Scene>
+                            <Scene key="tab2"  title="美图" icon={TabIcon} tabIcon="image" >
+                                <Scene key="Beauty" component={ImagePage} title="美图" hideNavBar/>
+                            </Scene>
+                            <Scene key="tab3"  title="视频" icon={TabIcon} tabIcon="video-camera" >
+                                <Scene key='Video' title='视频' component={VideoPage} hideNavBar/>
+                                <Scene key='VideoContent'  component={VideoContent} title='视频内容' hideNavBar/>
+                            </Scene>
+                            <Scene key="tab4" title="我" icon={TabIcon} tabIcon="user" >
+                                <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
+                                <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
+                            </Scene>
                         </Scene>
                     </Scene>
+                    <Scene key='UpdatePwdMadal' component={UpdatePwd} />
                 </Scene>
             </Router>
         );
