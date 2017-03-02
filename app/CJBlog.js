@@ -18,6 +18,7 @@ import VideoPage from '@video/VideoPage'
 import MinePage  from './mine/MinePage'
 import InfoContent  from './mine/InfoContent'
 import UpdatePwd  from './mine/UpdatePwd'
+import AboutPage  from './mine/AboutPage'
 import FeedBack  from './compo/FeedBack'
 
 import BlogContent  from './blog/BlogContent'
@@ -85,6 +86,7 @@ export default class CJBlog extends Component {
                                     <Scene key='Mine' title='我' component={MinePage} hideNavBar/>
                                     <Scene key='InfoContent' title='用户信息' component={InfoContent} hideNavBar/>
                                     <Scene key='UpdatePwdMadal' component={UpdatePwd} title='修改密码' hideNavBar/>
+                                    <Scene key='AboutPage' component={AboutPage} title='关于' hideNavBar/>
                                 </Scene>
                             </Scene>
                         </Scene>

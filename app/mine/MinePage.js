@@ -36,21 +36,32 @@ export default class MinePage extends Component {
     constructor() {
         super()
         this.state = {
-
+            isLogined:false
         }
         // bind functions
         this.goPage = this.goPage.bind(this)
     }
     renderTopUpView(){
         return (
-            <TouchableOpacity onPress={()=>Actions.InfoContent()}>
+            <TouchableOpacity onPress={()=>this.state.isLogined?Actions.InfoContent():this.refs.loginModal.open()}>
                 <View style={[styles.TopUpViewStyle,{flexDirection:'row'}]}>
-                    <View style={[{flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
-                        <Image source={{uri:'http://lanccj.synology.me:7070/blog/attached/avatar/default.jpg'}} style={{marginLeft:width*0.04,width:width*0.15,height:width*0.15,borderRadius:width*0.15/2}}/>
-                        <View style={[{marginLeft:width*0.02,flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}]}>
-                            <Text style={[{color:'#FFFFFF',fontSize:20}]}>陈健</Text>
-                        </View>
-                    </View>
+
+
+                        {this.state.isLogined?(
+                            <View style={[{flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
+                                <Image source={{uri:'http://lanccj.synology.me:7070/blog/attached/avatar/default.jpg'}} style={{marginLeft:width*0.04,width:width*0.15,height:width*0.15,borderRadius:width*0.15/2}}/>
+                                <View style={[{marginLeft:width*0.02,flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}]}>
+                                    <Text style={[{color:'#FFFFFF',fontSize:20}]}>陈健</Text>
+                                </View>
+                            </View>
+                            ):(
+                                <View style={[{flexDirection:'row',justifyContent:'center',alignItems:'center'}]}>
+                                    <View style={[{marginLeft:width*0.02,flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}]}>
+                                        <Text style={[{color:'#FFFFFF',fontSize:20}]}>点击登录</Text>
+                                    </View>
+                                </View>
+                            )}
+
                     <View style={[{marginRight:width*0.04,justifyContent:'center',alignItems:'center'}]}>
                         <Icon type='ionicon' color={'#F0EBF3'} name='ios-arrow-forward-outline' size={30} />
                     </View>
@@ -80,6 +91,8 @@ export default class MinePage extends Component {
         //Alert.alert('goPage='+id);
         if(id==='infoUpdate'){
             this.refs.updatePwdModal.open();
+        }else if(id==='about'){
+            Actions.AboutPage();
         }
     }
     render() {
@@ -90,14 +103,17 @@ export default class MinePage extends Component {
                     contentOffset={{y:height*0.16*2}}
                 >
                     <View style={styles.navBarStyle}>
-                        <View style={styles.TopViewStyle}>
+                        <View style={[styles.TopViewStyle,{height:this.state.isLogined?(Platform.OS==='ios'?height*0.16*3:height*0.16):(Platform.OS==='ios'?height*0.16*2:height*0.16)}]}>
                             {this.renderTopUpView()}
-                            {this.renderTopDownView()}
+                            {this.state.isLogined?this.renderTopDownView():null}
                         </View>
                     </View>
-                    <View style={[{marginTop:height*0.02+(Platform.OS==='ios'?height*0.16*2:0)}]}>
+                    <View style={[{marginTop:  this.state.isLogined?(height*0.02+(Platform.OS==='ios'?height*0.16*2:0)):(height*0.02+(Platform.OS==='ios'?height*0.16*1.6:0))   }]}>
                         <CommonCell id='infoUpdate'     name='密码修改' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600" callBackClick={(id)=>this.goPage(id)}/>
+
+                        <CommonCell id='about'     name='关于' type="button"  iconName="ios-information-circle-outline" iconType="ionicon" iconColor="#FA5600" callBackClick={(id)=>this.goPage(id)}/>
                     </View>
+
                 </ScrollView>
 
                 <Modal style={[styles.updatePwdModal]} position={"center"} ref={"updatePwdModal"} >
@@ -111,6 +127,18 @@ export default class MinePage extends Component {
                     <Button
                         backgroundColor="#FA5600"
                         title='修改' />
+                </Modal>
+
+
+                <Modal style={[styles.loginModal]} position={"center"} ref={"loginModal"} >
+                    <FormLabel>用户名</FormLabel>
+                    <FormInput/>
+                    <FormLabel>密码</FormLabel>
+                    <FormInput/>
+                    <FormValidationMessage>错误信息显示在此</FormValidationMessage>
+                    <Button
+                        backgroundColor="#2B99FF"
+                        title='登录' />
                 </Modal>
             </View>
         );
@@ -154,7 +182,6 @@ const styles = StyleSheet.create({
         color:'#FFFFFF'
     },
     TopViewStyle:{
-        height:Platform.OS==='ios'?height*0.16*3:height*0.16,
         backgroundColor: "#FA5600",
         marginTop:Platform.OS==='ios'?20:0,
     },
@@ -164,6 +191,10 @@ const styles = StyleSheet.create({
     updatePwdModal:{
         width:width*0.8,
         height:height*0.42
+    },
+    loginModal:{
+        width:width*0.8,
+        height:height*0.32
     }
 });
 

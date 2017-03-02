@@ -23,6 +23,9 @@ import Constant      from  '../common/Constant'
 import AppUrl        from  '../common/AppUrl'
 
 import {Actions} from 'react-native-router-flux'
+import ScrollTopView from 'react-native-scrolltotop'
+var MessageBarAlert = require('react-native-message-bar').MessageBar;
+var MessageBarManager = require('react-native-message-bar').MessageBarManager;
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -40,7 +43,8 @@ export default class BlogPage extends Component {
             pageNum:1,
             pageSize:6,
             tempDataSource: [],
-            loaded: 0
+            loaded: 0,
+            isShowToTop: false
         }
         Blogthat=this
         // bind functions
@@ -50,7 +54,14 @@ export default class BlogPage extends Component {
     }
     componentWillMount() {
         this.fetchData();
+        MessageBarManager.registerMessageBar(this.refs.alert);
     }
+
+    componentWillUnmount() {
+        // Remove the alert located on this master page from the manager
+        MessageBarManager.unregisterMessageBar();
+    }
+
     fetchData(){
         //网络获取数据
         var url = AppUrl.BlogListUrl;
@@ -211,7 +222,19 @@ export default class BlogPage extends Component {
                         this.setState({
                             isRefreshing:false
                         });
-                        Alert.alert('没有更多数据');
+                        //Alert.alert('没有更多数据');
+
+                        // Call this method after registering your MessageBar as the current alert
+// By calling this method the registered alert will be displayed
+// This is useful to show the alert from your current page or a child component
+//                         MessageBarManager.showAlert({
+//                             title: 'Your alert title goes here',
+//                             message: 'Your alert message goes here',
+//                             alertType: 'success',
+//                             // See Properties section for full customization
+//                             // Or check `index.ios.js` or `index.android.js` for a complete example
+//                         });
+
                     }
                 } else {
                     Alert.alert(responseData.message);
@@ -226,7 +249,24 @@ export default class BlogPage extends Component {
         //this.setState({isRefreshing: true})
         Blogthat.fetchData();
     }
+
+    //here is the _onScrol method
+    _onScroll(e) {
+        var offsetY = e.nativeEvent.contentOffset.y;
+
+        if(offsetY > 100) {
+            this.setState({
+                isShowToTop: true
+            })
+        } else {
+            this.setState({
+                isShowToTop: false
+            })
+        }
+    }
+
     render() {
+        <MessageBarAlert ref="alert" />
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -235,6 +275,8 @@ export default class BlogPage extends Component {
                 />
                 {this.renderNavBar()}
                 <ListView
+                    ref="listview"
+                    onScroll={(e)=>this._onScroll(e)}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}
                     contentContainerStyle={styles.contentViewStyle}
@@ -255,6 +297,7 @@ export default class BlogPage extends Component {
                     //onEndReachedThreshold={250}
                     //onEndReached={this._onLoadMore.bind(this)}
                 />
+                {this.state.isShowToTop?<ScrollTopView root={this} ></ScrollTopView>:null}
             </View>
         );
     }
