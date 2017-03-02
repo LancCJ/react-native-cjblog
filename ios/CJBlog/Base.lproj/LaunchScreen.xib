@@ -28,6 +28,6 @@
         </view>
     </objects>
     <resources>
-        <image name="LanuchScreen" width="480" height="800"/>
+        <image name="LanuchScreen" width="640" height="1136"/>
     </resources>
 </document>
