@@ -2,7 +2,7 @@ package com.cjblog;
 
 import android.app.Application;
 import android.util.Log;
-
+import org.pgsqlite.SQLitePluginPackage;
 import com.facebook.react.ReactApplication;
 import com.brentvatne.react.ReactVideoPackage;
 import com.cboy.rn.splashscreen.SplashScreenReactPackage;
@@ -30,7 +30,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new ReactVideoPackage(),
             new SplashScreenReactPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new SQLitePluginPackage()
       );
     }
   };
