@@ -26,6 +26,7 @@ import {Actions} from 'react-native-router-flux'
 import ScrollTopView from 'react-native-scrolltotop'
 var MessageBarAlert = require('react-native-message-bar').MessageBar;
 var MessageBarManager = require('react-native-message-bar').MessageBarManager;
+var SQLite = require('react-native-sqlite-storage')
 
 var Dimensions = require('Dimensions')
 var {width,height}=Dimensions.get('window')
@@ -37,6 +38,11 @@ var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 export default class BlogPage extends Component {
     constructor() {
         super()
+
+
+
+
+
         this.state = {
             dataSource: ds.cloneWithRows([]),
             isRefreshing:true,
@@ -51,9 +57,33 @@ export default class BlogPage extends Component {
         this._onRefresh = this._onRefresh.bind(this)
         this.fetchData = this.fetchData.bind(this)
 
+        this.readCatchFromDb = this.readCatchFromDb.bind(this)
+
+
+        this.errorCB = this.errorCB.bind(this)
+        this.successCB = this.successCB.bind(this)
+        this.openCB = this.openCB.bind(this)
+
     }
+
+    errorCB(err) {
+        console.log("SQL Error: " + err);
+    }
+
+    successCB() {
+        console.log("SQL executed fine");
+    }
+
+    openCB() {
+        console.log("Database OPENED");
+    }
+
+
     componentDidMount() {
         MessageBarManager.registerMessageBar(this.refs.alert);
+
+        //this.readCatchFromDb();
+
         this.fetchData();
     }
 
@@ -61,6 +91,39 @@ export default class BlogPage extends Component {
         // Remove the alert located on this master page from the manager
         MessageBarManager.unregisterMessageBar();
     }
+
+    readCatchFromDb(){
+        console.log('从上一次缓存数据库Sqlite获取数据进行展示');
+
+        var db = SQLite.openDatabase("cjblog.db", "1.0", "CJBLOG", 200000, this.openCB, this.errorCB);
+        db.transaction((tx) => {
+            tx.executeSql(' SELECT * FROM cjblog_blog ', [], (tx, results) => {
+                console.log("Query completed");
+
+                // Get rows with Web SQL Database spec compliance.
+
+                var len = results.rows.length;
+                for (let i = 0; i < len; i++) {
+                    let row = results.rows.item(i);
+                    console.log(`Employee name: ${row.name}, Dept Name: ${row.deptName}`);
+                }
+
+                // Alternatively, you can use the non-standard raw method.
+
+                /*
+                 let rows = results.rows.raw(); // shallow copy of rows Array
+
+                 rows.map(row => console.log(`Employee name: ${row.name}, Dept Name: ${row.deptName}`));
+                 */
+            },(tx, results) => {
+
+
+
+                }
+            );
+        });
+    }
+
 
     fetchData(){
         //网络获取数据
@@ -143,7 +206,7 @@ export default class BlogPage extends Component {
 
                     sigalRowdata.view=sigalRowdata.view+1
 
-                    //console.log(sigalRowdata);
+                    console.log(sigalRowdata);
 
                     array[index]={
                         view:sigalRowdata.view,
