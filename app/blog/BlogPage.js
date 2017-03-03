@@ -52,9 +52,9 @@ export default class BlogPage extends Component {
         this.fetchData = this.fetchData.bind(this)
 
     }
-    componentWillMount() {
-        this.fetchData();
+    componentDidMount() {
         MessageBarManager.registerMessageBar(this.refs.alert);
+        this.fetchData();
     }
 
     componentWillUnmount() {
@@ -187,7 +187,7 @@ export default class BlogPage extends Component {
     }
 
     _onRefresh(){
-        console.log('刷新中');
+        //console.log('刷新中');
         this.setState({isRefreshing: true});
 
 
@@ -207,7 +207,7 @@ export default class BlogPage extends Component {
                 //console.log(responseData);
                 if(retCode == Constant.SUCCESS) {
                     //Alert.alert(responseData.message);
-                    console.log(responseData.data.size)
+                    //console.log(responseData.data.length)
                     if(responseData.data.length>0){
                         const rowData=(responseData.data).concat(this.state.tempDataSource.slice());
 
@@ -219,6 +219,7 @@ export default class BlogPage extends Component {
                             loaded: this.state.loaded + 6,
                         });
                     }else{
+                        console.log('没有更多数据');
                         this.setState({
                             isRefreshing:false
                         });
@@ -227,13 +228,13 @@ export default class BlogPage extends Component {
                         // Call this method after registering your MessageBar as the current alert
 // By calling this method the registered alert will be displayed
 // This is useful to show the alert from your current page or a child component
-//                         MessageBarManager.showAlert({
-//                             title: 'Your alert title goes here',
-//                             message: 'Your alert message goes here',
-//                             alertType: 'success',
-//                             // See Properties section for full customization
-//                             // Or check `index.ios.js` or `index.android.js` for a complete example
-//                         });
+                        MessageBarManager.showAlert({
+                            title: '信息提示',
+                            message: '没有更多数据',
+                            alertType: 'warning',
+                            // See Properties section for full customization
+                            // Or check `index.ios.js` or `index.android.js` for a complete example
+                        });
 
                     }
                 } else {
@@ -266,7 +267,6 @@ export default class BlogPage extends Component {
     }
 
     render() {
-        <MessageBarAlert ref="alert" />
         return (
             <View style={styles.container}>
                 <StatusBar
@@ -298,6 +298,7 @@ export default class BlogPage extends Component {
                     //onEndReached={this._onLoadMore.bind(this)}
                 />
                 {this.state.isShowToTop?<ScrollTopView root={this} ></ScrollTopView>:null}
+                <MessageBarAlert ref="alert" />
             </View>
         );
     }

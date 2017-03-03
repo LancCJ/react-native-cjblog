@@ -20,6 +20,7 @@ import InfoContent  from './mine/InfoContent'
 import UpdatePwd  from './mine/UpdatePwd'
 import AboutPage  from './mine/AboutPage'
 import FeedBack  from './compo/FeedBack'
+import TestAlert  from './test/TestAlert'
 
 import BlogContent  from './blog/BlogContent'
 import VideoContent  from './video/VideoContent'
@@ -70,6 +71,8 @@ export default class CJBlog extends Component {
                 <Router onExitApp={this._backAndroidHandler} >
                     <Scene key="modal" component={Modal} >
                         <Scene key="root">
+                            {/*<Scene key='TestAlert' component={TestAlert} title='弹出测试' hideNavBar/>*/}
+
                             <Scene key="tabbar" tabs tabBarStyle={{backgroundColor: '#FFF', borderTopWidth: 1, borderTopColor: '#BBB'}} >
                                 <Scene key="tab1"   initial title="博客" icon={TabIcon} tabIcon="list" >
                                     <Scene key='Blog'  component={BlogPage} title='博客' hideNavBar/>

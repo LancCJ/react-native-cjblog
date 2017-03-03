@@ -73,6 +73,7 @@ export default class AboutPage extends Component {
                     <Text>react-native-vector-icons</Text>
                     <Text>react-native-scrolltotop</Text>
                     <Text>react-native-message-bar</Text>
+                    <Text>react-native-video</Text>
                     <Text>源码地址:</Text>
                     <Text>github.com/LancCJ/react-native-cjblog.git</Text>
                 </View>
